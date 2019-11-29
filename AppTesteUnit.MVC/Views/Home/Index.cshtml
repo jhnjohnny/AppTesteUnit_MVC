@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AppTesteUnit.MVC.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<br>
+
+@if(Model.Any())
+{
+    <table id="DataTable" class="table display" style="width:100%;">
+        <thead>
+            <tr>
+                <!-- <th>@Html.DisplayNameFor(model => model.Id)</th> -->
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.DataCriacao)</th>
+                <th>@Html.DisplayNameFor(model => model.Saldo)</th>
+                <th>@Html.DisplayNameFor(model => model.AcimaLimite)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {       
+                <tr>
+                    <!-- <td>@Html.DisplayFor(modelItem => item.Id)</td>  -->
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataCriacao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Saldo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AcimaLimite)</td>       
+                </tr>
+            }
+        </tbody>
+    </table>
+}
