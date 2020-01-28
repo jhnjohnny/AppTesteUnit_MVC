@@ -13,5 +13,27 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: echo AppTesteUnit MVC!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: Docker@2
+  displayName: Build and Push
+  inputs:
+    containerRegistry: 'DockerRegistryJHN'
+    repository: 'jhnjohnny/apicontagem_azuredevops'
+    command: 'buildandpush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+      latest
+
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
+    appName: 'individual-trello'
+    containers: 'jhnjohnny/apicontagem_azuredevops:latest'
