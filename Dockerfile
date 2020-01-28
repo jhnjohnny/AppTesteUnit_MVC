@@ -8,7 +8,7 @@ RUN dotnet restore
 RUN pwsh -Command Write-Host "APIContagem: Gerando uma nova imagem Docker com Alpine e testando o PowerShell Core"
 
 # Build da aplicacao
-COPY . ./
+COPY AppTesteUnit.MVC ./
 RUN dotnet publish -c Release -o out
 
 # Build da imagem
